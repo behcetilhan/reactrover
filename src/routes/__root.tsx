@@ -1,18 +1,13 @@
-import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
+import { createRootRouteWithContext } from '@tanstack/react-router'
 import { QueryClient } from '@tanstack/react-query'
-import { AuthContextProps } from 'utils/AuthContext'
+import { AppContextProps } from '@/utils/AppContext'
+import { RootComponent } from '@/components/RootComponent'
 
-interface RouterContextProps {
-  auth: AuthContextProps
+export interface RouterContextProps {
+  auth: AppContextProps
   queryClient: QueryClient
 }
 
 export const Route = createRootRouteWithContext<RouterContextProps>()({
-  component: () => (
-    <div>
-      <span>root itself</span>
-      <hr />
-      <Outlet />
-    </div>
-  )
+  component: RootComponent
 })

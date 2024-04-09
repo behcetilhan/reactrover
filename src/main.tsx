@@ -1,16 +1,23 @@
 import ReactDOM from 'react-dom/client'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import {
-  createRouter,
-  ErrorComponent,
-  RouterProvider
-} from '@tanstack/react-router'
-import { routeTree } from '@/routeTree.gen'
-import { useAuth } from '@/utils/hooks/useAuth'
-import { AuthProvider } from '@/utils/AuthContext'
 import { StrictMode } from 'react'
+import { CssBaseline } from '@mui/material'
+import { App } from '@/App'
+import { MultiThemeProvider } from '@/utils/ThemeContext'
+import { initI18n } from '@/i18n'
+import { AppProvider } from '@/utils/AppProvider'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { createRouter, ErrorComponent } from '@tanstack/react-router'
+import { routeTree } from '@/routeTree.gen'
 
 const queryClient = new QueryClient()
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
 
 const router = createRouter({
   routeTree,
@@ -25,37 +32,23 @@ const router = createRouter({
   defaultNotFoundComponent: () => <span>is a 404</span>
 })
 
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router
-  }
-}
-
-function InnerApp() {
-  const auth = useAuth()
-  return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} context={{ auth }} />
-    </QueryClientProvider>
-  )
-}
-
-function App() {
-  return (
-    <AuthProvider>
-      <InnerApp />
-    </AuthProvider>
-  )
-}
-
-const rootElement = document.getElementById('app')!
+const rootElement = document.getElementById('appRoot')!
 
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
 
+  initI18n()
   root.render(
     <StrictMode>
-      <App />
+      <MultiThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <CssBaseline />
+          <AppProvider>
+            <ToastContainer />
+            <App router={router} />
+          </AppProvider>
+        </QueryClientProvider>
+      </MultiThemeProvider>
     </StrictMode>
   )
 }
