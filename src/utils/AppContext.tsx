@@ -5,21 +5,21 @@ export interface User {
   password: string
 }
 
-export interface AuthContextProps {
+export interface AppContextProps {
   isAuthenticated: boolean
   setUser: (user: User | null) => void
   user: User | null
 }
 
-const authInitials: AuthContextProps = {
+const appInitials: AppContextProps = {
   isAuthenticated: false,
   setUser: () => {},
   user: null
 }
 
-export const AuthContext = createContext<AuthContextProps>(authInitials)
+export const AppContext = createContext<AppContextProps>(appInitials)
 
-export const AuthProvider = (props: PropsWithChildren) => {
+export const AppProvider = (props: PropsWithChildren) => {
   const [user, setUser] = useState<User | null>(null)
   const isAuthenticated = !!user
 
@@ -29,6 +29,6 @@ export const AuthProvider = (props: PropsWithChildren) => {
   )
 
   return (
-    <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>
+    <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
   )
 }
