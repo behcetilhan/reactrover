@@ -1,7 +1,7 @@
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import { QueryClient } from '@tanstack/react-query'
 import { AppContextProps } from '@/utils/AppContext'
-import { Typography } from '@mui/material'
+import { ThemeToggler } from '@/components/themeToggler/ThemeToggler'
 
 export interface RouterContextProps {
   auth: AppContextProps
@@ -11,7 +11,8 @@ export interface RouterContextProps {
 export const Route = createRootRouteWithContext<RouterContextProps>()({
   component: () => (
     <div>
-      <Typography>root component</Typography>
+      <span>Toggle Theme</span>
+      <ThemeToggler />
       <hr />
       <Outlet />
     </div>

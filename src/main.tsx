@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom/client'
 import { AppProvider } from '@/utils/AppContext'
 import { StrictMode } from 'react'
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import { theme } from '@/theme'
+import { CssBaseline } from '@mui/material'
 import { App } from '@/App'
+import { MultiThemeProvider } from '@/utils/ThemeContext'
 
 const rootElement = document.getElementById('appRoot')!
 
@@ -12,12 +12,12 @@ if (!rootElement.innerHTML) {
 
   root.render(
     <StrictMode>
-      <ThemeProvider theme={theme}>
+      <MultiThemeProvider>
         <CssBaseline />
         <AppProvider>
           <App />
         </AppProvider>
-      </ThemeProvider>
+      </MultiThemeProvider>
     </StrictMode>
   )
 }
