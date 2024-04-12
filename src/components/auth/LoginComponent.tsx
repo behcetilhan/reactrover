@@ -2,8 +2,10 @@ import { useFormik } from 'formik'
 import { loginSchema } from '@/components/auth/loginSchema'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
 import { Button, Container, Stack, TextField } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 export const LoginComponent = () => {
+  const { t } = useTranslation()
   const { handleSubmit, values, handleChange, handleBlur, touched, errors } =
     useFormik({
       initialValues: {
@@ -25,7 +27,7 @@ export const LoginComponent = () => {
             fullWidth
             id='username'
             name='username'
-            label='Username'
+            label={t('auth.username')}
             value={values.username}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -37,7 +39,7 @@ export const LoginComponent = () => {
             fullWidth
             id='password'
             name='password'
-            label='Password'
+            label={t('auth.password')}
             type='password'
             value={values.password}
             onChange={handleChange}
@@ -46,7 +48,7 @@ export const LoginComponent = () => {
             helperText={touched.password && errors.password}
           />
           <Button type={'submit'} color={'primary'} variant={'contained'}>
-            Submit
+            {t('auth.login')}
           </Button>
         </Stack>
       </form>

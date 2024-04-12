@@ -1,0 +1,11 @@
+{
+  "languages": {
+    "english": "Englisch",
+    "german": "Deutsch"
+  },
+  "auth": {
+    "username": "Benutzername",
+    "password": "Passwort",
+    "login": "Einloggen"
+  }
+}
