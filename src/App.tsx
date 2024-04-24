@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-router'
 import { useAuth } from '@/utils/hooks/useAuth'
 import { routeTree } from '@/routeTree.gen'
+import { useEffect } from 'react'
 
 const queryClient = new QueryClient()
 
@@ -30,6 +31,10 @@ const router = createRouter({
 
 export const App = () => {
   const auth = useAuth()
+
+  useEffect(() => {
+    router.invalidate()
+  }, [auth])
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -1,6 +1,12 @@
-import { createContext, PropsWithChildren, useMemo, useState } from 'react'
+import { createContext } from 'react'
 
 export interface User {
+  username: string
+  accessToken: string
+  userId: number
+}
+
+export interface LoginRequestProps {
   username: string
   password: string
 }
@@ -18,17 +24,3 @@ const appInitials: AppContextProps = {
 }
 
 export const AppContext = createContext<AppContextProps>(appInitials)
-
-export const AppProvider = (props: PropsWithChildren) => {
-  const [user, setUser] = useState<User | null>(null)
-  const isAuthenticated = !!user
-
-  const value = useMemo(
-    () => ({ isAuthenticated, user, setUser }),
-    [isAuthenticated, user]
-  )
-
-  return (
-    <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
-  )
-}
