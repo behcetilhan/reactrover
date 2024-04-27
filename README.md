@@ -1,1 +1,1 @@
-# ReactRover: React + TypeScript + Vite
+# ReactRover
