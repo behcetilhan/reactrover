@@ -3,17 +3,10 @@ import { loginSchema } from '@/components/auth/loginSchema'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
 import { Button, Container, Stack, TextField } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { useAuth } from '@/utils/hooks/useAuth'
-import { useRouter } from '@tanstack/react-router'
-import { Route } from '@/routes/login'
-import { useLayoutEffect } from 'react'
 import { useLogin } from '@/utils/hooks/useLogin'
 
 export const LoginComponent = () => {
   const { t } = useTranslation()
-  const { isAuthenticated } = useAuth()
-  const { redirect } = Route.useSearch()
-  const router = useRouter()
 
   const loginMutation = useLogin()
 
@@ -32,13 +25,6 @@ export const LoginComponent = () => {
         })
       }
     })
-
-  useLayoutEffect(() => {
-    if (!isAuthenticated) {
-      return
-    }
-    redirect ? router.history.push(redirect) : router.history.push('/dashboard')
-  }, [isAuthenticated, redirect, router.history])
 
   return (
     <Container maxWidth='xs' sx={{ py: 4 }}>

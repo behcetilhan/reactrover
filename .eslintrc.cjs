@@ -24,6 +24,7 @@ module.exports = {
         '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-unsafe-return':'off',
         '@typescript-eslint/no-floating-promises':'off',
+        '@typescript-eslint/no-misused-promises':'off',
         'react-refresh/only-export-components': [
             'warn',
             {allowConstantExport: true},

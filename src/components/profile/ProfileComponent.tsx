@@ -1,17 +1,18 @@
-import { Button } from '@mui/material'
+import { Button, Container } from '@mui/material'
 import { useNavigate } from '@tanstack/react-router'
 
 export const ProfileComponent = () => {
   const navigate = useNavigate()
   return (
-    <>
-      <div>profile page</div>
+    <Container>
+      <div>Another protected route example</div>
       <Button
+        sx={{ mt: 2 }}
         variant={'contained'}
         onClick={() => navigate({ to: '/dashboard' })}
       >
-        to dash
+        return to dashboard
       </Button>
-    </>
+    </Container>
   )
 }

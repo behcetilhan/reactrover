@@ -1,17 +1,19 @@
 import { useMutation } from '@tanstack/react-query'
-import { LoginRequestProps, User } from '@/utils/AppContext'
+import { LoginRequestProps, LoginResponseProps } from '@/utils/AppContext'
 import { axiosBase, setAuthToken } from '@/utils/apiDefaults'
-import { useAuth } from '@/utils/hooks/useAuth'
+import { useAppContext } from '@/utils/hooks/useAppContext'
 import { AxiosError } from 'axios'
 import { toast } from 'react-toastify'
 import type { CustomAxiosRequestConfig } from 'axios-auth-refresh/dist/utils'
+import { useRouter } from '@tanstack/react-router'
 
 interface ErrorResponse {
   error: string
 }
 
 export const useLogin = () => {
-  const { setUser } = useAuth()
+  const { setUser } = useAppContext()
+  const router = useRouter()
 
   const customAxiosRequestConfig: CustomAxiosRequestConfig = {
     skipAuthRefresh: true
@@ -19,29 +21,27 @@ export const useLogin = () => {
 
   return useMutation({
     mutationFn: ({ username, password }: LoginRequestProps) => {
-      return axiosBase.post<User>(
+      return axiosBase.post<LoginResponseProps>(
         '/login',
         { username, password },
         customAxiosRequestConfig
       )
     },
     onSuccess: (res) => {
-      const { username, userId, accessToken } = res.data
+      const { username, userId, accessToken, avatarURL } = res.data
 
       const userData = {
         username,
-        userId
+        userId,
+        avatarURL
       }
 
       localStorage.setItem('user', JSON.stringify(userData))
 
-      setUser({
-        username,
-        accessToken,
-        userId
-      })
+      setUser(userData)
 
       setAuthToken(accessToken)
+      router.history.push('/dashboard')
     },
     onError: (err: AxiosError<ErrorResponse>) => {
       let errMsg = 'Network Error'

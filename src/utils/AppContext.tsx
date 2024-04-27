@@ -1,10 +1,13 @@
 import { createContext } from 'react'
 
-export interface User {
+export interface LoginResponseProps {
   username: string
-  accessToken: string
   userId: number
+  accessToken: string | undefined
+  avatarURL: string
 }
+
+export interface User extends Omit<LoginResponseProps, 'accessToken'> {}
 
 export interface LoginRequestProps {
   username: string
@@ -12,13 +15,11 @@ export interface LoginRequestProps {
 }
 
 export interface AppContextProps {
-  isAuthenticated: boolean
   setUser: (user: User | null) => void
   user: User | null
 }
 
 const appInitials: AppContextProps = {
-  isAuthenticated: false,
   setUser: () => {},
   user: null
 }

@@ -10,7 +10,25 @@ export interface TokenResponse {
   accessToken: string
 }
 
-export const setAuthToken = (token: string | null) => {
+export let tokenGlobal: string | undefined = undefined
+
+export const getRefreshToken = async () => {
+  if (tokenGlobal) {
+    return tokenGlobal
+  }
+
+  try {
+    const refreshedToken =
+      await axiosBase.post<TokenResponse>('/public/refresh')
+
+    return refreshedToken.data.accessToken
+  } catch (err) {
+    console.error('error getRefreshToken', err)
+  }
+}
+
+export const setAuthToken = (token: string | undefined) => {
+  tokenGlobal = token
   if (token) {
     axiosBase.defaults.headers.common['Authorization'] = `Bearer ${token}`
   } else {
