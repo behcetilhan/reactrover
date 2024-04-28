@@ -1,7 +1,9 @@
-# ReactRover
 
-<div>
- <img src="/public/rrLogo.png" alt="ReactRover Logo" width=150>
+
+<div style="display: flex; gap: 8px">
+ <img src="/public/rrLogo.png" alt="ReactRover Logo" width=100>
+
+# ReactRover
 </div>
 
 ---
@@ -47,6 +49,12 @@ Before installing ReactRover, ensure that your system meets the following requir
 git clone https://github.com/behcetilhan/reactrover.git reactrover
 cd reactrover
 bun install
+```
+
+Create `.env` file in root directory with `VITE_BACKEND_ENDPOINT` defined. For [Testing Server](https://github.com/your-username/mock-server), you can use the port defined in `.env.dist`. 
+
+```sh
+bun run dev
 ```
 
 ---

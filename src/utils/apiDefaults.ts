@@ -1,9 +1,15 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import createAuthRefreshInterceptor from 'axios-auth-refresh'
 
+export const backendURL = import.meta.env.VITE_BACKEND_ENDPOINT
+
+if (!backendURL) {
+  console.error('BACKEND_ENDPOINT must be set. Please copy .env.dist to .env')
+}
+
 export const axiosBase = axios.create({
   withCredentials: true,
-  baseURL: 'https://localhost:3001'
+  baseURL: backendURL
 })
 
 export interface TokenResponse {
