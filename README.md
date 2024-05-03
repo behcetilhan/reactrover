@@ -6,8 +6,6 @@
 # ReactRover
 </div>
 
-## Why ?
-
 ReactRover aims to ease the initiation phase of any React project, presenting one of many possible solutions to streamline the process. It brings together a selection of tools and libraries—like Vite, Bun, MUI, and Tanstack—that have proven useful in reducing setup times and complexity. This toolkit is offered as a starting point, a way to quickly transition from concept to development, allowing you to focus more on creating and less on configuring.
 
 
