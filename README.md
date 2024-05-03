@@ -6,14 +6,10 @@
 # ReactRover
 </div>
 
----
-
-
 ## Why ?
 
 ReactRover aims to ease the initiation phase of any React project, presenting one of many possible solutions to streamline the process. It brings together a selection of tools and libraries—like Vite, Bun, MUI, and Tanstack—that have proven useful in reducing setup times and complexity. This toolkit is offered as a starting point, a way to quickly transition from concept to development, allowing you to focus more on creating and less on configuring.
 
----
 
 ## What's Included ?
 
@@ -34,7 +30,6 @@ ReactRover incorporates a carefully curated set of tools and libraries essential
 
 Additionally, ReactRover supports built-in theme toggling for dark and light modes, as well as language switching capabilities, enhancing usability and customization for a diverse user base.
 
----
 
 ## Prerequisites
 
@@ -51,15 +46,13 @@ cd reactrover
 bun install
 ```
 
-Create `.env` file in root directory with `VITE_BACKEND_ENDPOINT` defined. For [Testing Server](https://github.com/your-username/mock-server), you can use the port defined in `.env.dist`. 
+Create `.env` file in root directory with `VITE_BACKEND_ENDPOINT` defined. For [Testing Server](https://github.com/behcetilhan/mock-auth), you can use the port defined in `.env.dist`. 
 
 ```sh
 bun run dev
 ```
 
----
-
-## Recommended Tool for Testing
+## Tool for Testing
 
 ### Dedicated Mock Server for Authentication and Authorization
 
@@ -71,4 +64,4 @@ For an optimal testing experience with ReactRover, you can use this simple mock 
 - HTTPS configuration to ensure encrypted data transmission.
 - Pre-configured protected routes to simulate access control.
 
-For detailed setup instructions and how to integrate this server with ReactRover, please visit the [Testing Server](https://github.com/your-username/mock-server).
+For detailed setup instructions and how to integrate this server with ReactRover, please visit the [Testing Server](https://github.com/behcetilhan/mock-auth).
